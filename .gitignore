@@ -100,11 +100,14 @@ celerybeat.pid
 
 # SageMath parsed files
 *.sage.py
-
+data
+demo.py
+notebooks/GoogleNews-vectors-negative300.bin
 # Environments
 .env
 .venv
 env/
+dev-venv/
 venv/
 ENV/
 env.bak/
