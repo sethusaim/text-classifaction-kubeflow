@@ -1,3 +1,4 @@
-kfp==1.8.18
+certifi==2022.12.7
+pandas==1.5.2
 pip-chill==1.0.1
 wincertstore==0.2
