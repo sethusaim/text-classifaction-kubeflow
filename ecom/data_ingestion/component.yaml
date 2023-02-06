@@ -1,7 +1,5 @@
-name: testing
+name: Data Ingestion
 implementation:
   container:
-    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/kubeflow-testing
-    command:
-      - python3
-      - run.py
+    image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/ecom-data-ingestion:latest
+    command: ["python3", "run.py"]
