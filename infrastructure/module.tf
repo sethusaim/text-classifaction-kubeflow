@@ -1,15 +1,19 @@
 terraform {
   backend "s3" {
-    bucket = "ecom-ineuron-tf-state"
+    bucket = "ineuron-tf-state"
     key    = "tf_state"
-    region = "ap-south-1"
+    region = "us-east-1"
   }
+}
+
+module "ecom_artifacts" {
+  source = "./ecom_artifacts"
 }
 
 module "ecom_feature_store" {
   source = "./ecom_feature_store"
 }
 
-module "ecom_artifacts" {
-  source = "./ecom_artifacts"
+module "ecom_kfp_policy" {
+  source = "./ecom_kfp_policy"
 }

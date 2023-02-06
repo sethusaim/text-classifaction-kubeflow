@@ -1,0 +1,31 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: testing-2-
+  annotations: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.18, pipelines.kubeflow.org/pipeline_compilation_time: '2023-01-25T13:15:01.988113',
+    pipelines.kubeflow.org/pipeline_spec: '{"name": "testing"}'}
+  labels: {pipelines.kubeflow.org/kfp_sdk_version: 1.8.18}
+spec:
+  entrypoint: testing-2
+  templates:
+  - name: testing
+    container:
+      args: []
+      command: [python3, run.py]
+      image: 566373416292.dkr.ecr.us-east-1.amazonaws.com/kubeflow-testing
+    metadata:
+      labels:
+        pipelines.kubeflow.org/kfp_sdk_version: 1.8.18
+        pipelines.kubeflow.org/pipeline-sdk-type: kfp
+        pipelines.kubeflow.org/enable_caching: "true"
+      annotations: {pipelines.kubeflow.org/component_spec: '{"implementation": {"container":
+          {"command": ["python3", "run.py"], "image": "566373416292.dkr.ecr.us-east-1.amazonaws.com/kubeflow-testing"}},
+          "name": "testing"}', pipelines.kubeflow.org/component_ref: '{"digest": "948edb16922ac2a3caa6978aa6d8b8dc83db95222b99534041106f6351b3d5b2",
+          "url": "component.yaml"}'}
+  - name: testing-2
+    dag:
+      tasks:
+      - {name: testing, template: testing}
+  arguments:
+    parameters: []
+  serviceAccountName: pipeline-runner
