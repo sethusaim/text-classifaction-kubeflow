@@ -10,10 +10,6 @@ module "ecom_artifacts" {
   source = "./ecom_artifacts"
 }
 
-module "ecom_feature_store" {
-  source = "./ecom_feature_store"
-}
-
-module "ecom_kfp_policy" {
-  source = "./ecom_kfp_policy"
-}
+# module "ecom_kfp_policy" {
+#   source = "./ecom_kfp_policy"
+# }
