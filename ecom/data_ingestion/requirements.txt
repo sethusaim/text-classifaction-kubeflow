@@ -1,6 +1,7 @@
+boto3==1.26.67
 certifi==2022.12.7
 pandas==1.5.3
 pip-chill==1.0.1
 pymongo==4.3.3
-scikit-learn==1.2.0
+scikit-learn==1.2.1
 wincertstore==0.2

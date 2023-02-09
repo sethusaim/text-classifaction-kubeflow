@@ -10,9 +10,9 @@ ARTIFACT_DIR: str = "artifacts"
 
 LOG_DIR: str = "logs"
 
-APP_ARTIFACTS_BUCKET: str = "8909ecom-artifacts"
+APP_ARTIFACTS_BUCKET: str = "15787ecom-artifacts"
 
-DATABASE_NAME: str = "ecom_data"
+DATABASE_NAME: str = "ineuron"
 
 TARGET_COLUMN = "class"
 
@@ -25,7 +25,7 @@ TEST_FILE_NAME: str = "ecom_test.csv"
 """
 Data Ingestion related constant start with DATA_INGESTION VAR NAME
 """
-DATA_INGESTION_COLLECTION_NAME: str = "ecom_records"
+DATA_INGESTION_COLLECTION_NAME: str = "ecom"
 
 DATA_INGESTION_DIR_NAME: str = "data_ingestion"
 
