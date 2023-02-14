@@ -2,7 +2,8 @@ import os
 
 from kfp import Client
 from kfp.components import load_component_from_file
-from kfp.dsl import BaseOp, pipeline
+from kfp.dsl import pipeline, BaseOp
+
 from ecom.api.auth import get_istio_auth_session
 
 KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
@@ -20,7 +21,7 @@ data_ingestion = load_component_from_file("kfp_components/data_ingestion.yaml")
 @pipeline(name="Train Pipeline")
 def train_pipeline():
     task_1: BaseOp = data_ingestion()
-    
+
 
 if __name__ == "__main__":
     client = Client(
