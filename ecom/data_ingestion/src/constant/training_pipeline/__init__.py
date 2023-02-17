@@ -2,7 +2,7 @@ from datetime import datetime
 
 TIMESTAMP: datetime = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
 
-MONGODB_URL_KEY = "MONGO_DB_URL"
+MONGODB_URL_KEY: str = "MONGO_DB_URL"
 
 PIPELINE_NAME: str = "ecom"
 
@@ -14,7 +14,7 @@ APP_ARTIFACTS_BUCKET: str = "15787ecom-artifacts"
 
 DATABASE_NAME: str = "ineuron"
 
-TARGET_COLUMN = "class"
+TARGET_COLUMN: str = "class"
 
 FILE_NAME: str = "ecom.csv"
 

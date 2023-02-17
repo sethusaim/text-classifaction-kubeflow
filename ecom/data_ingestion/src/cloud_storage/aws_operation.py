@@ -4,7 +4,7 @@ import sys
 from src.exception import EcomException
 
 
-class S3Sync:
+class S3Operation:
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:

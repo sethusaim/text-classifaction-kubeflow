@@ -12,8 +12,8 @@ from src.logger import logging
 
 
 class DataIngestion:
-    def __init__(self, data_ingestion_config: DataIngestionConfig):
-        self.data_ingestion_config: DataIngestionConfig = data_ingestion_config
+    def __init__(self):
+        self.data_ingestion_config: DataIngestionConfig = DataIngestionConfig()
 
         self.ecom_data = EcomData()
 
@@ -66,7 +66,9 @@ class DataIngestion:
                 "Exited split_data_as_train_test method of Data_Ingestion class"
             )
 
-            dir_path = os.path.dirname(self.data_ingestion_config.training_file_path)
+            dir_path: str = os.path.dirname(
+                self.data_ingestion_config.training_file_path
+            )
 
             os.makedirs(dir_path, exist_ok=True)
 

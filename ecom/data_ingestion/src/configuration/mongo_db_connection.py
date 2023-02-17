@@ -3,6 +3,7 @@ import sys
 
 import certifi
 from pymongo import MongoClient
+
 from src.constant.training_pipeline import DATABASE_NAME, MONGODB_URL_KEY
 from src.exception import EcomException
 

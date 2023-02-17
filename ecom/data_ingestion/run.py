@@ -1,21 +1,15 @@
 import sys
 
-from src.cloud_storage.aws_operation import S3Sync
+from src.cloud_storage.aws_operation import S3Operation
 from src.components.data_ingestion import DataIngestion
 from src.entity.artifact_entity import DataIngestionArtifact
-from src.entity.config_entity import DataIngestionConfig, TrainingPipelineConfig
+from src.entity.config_entity import TrainingPipelineConfig
 from src.exception import EcomException
-
-s3 = S3Sync()
-
-training_pipeline_config = TrainingPipelineConfig()
 
 
 def start_data_ingestion() -> DataIngestionArtifact:
     try:
-        data_ingestion_config = DataIngestionConfig(training_pipeline_config)
-
-        data_ingestion: DataIngestion = DataIngestion(data_ingestion_config)
+        data_ingestion: DataIngestion = DataIngestion()
 
         data_ingestion.initiate_data_ingestion()
 
@@ -23,12 +17,14 @@ def start_data_ingestion() -> DataIngestionArtifact:
         raise EcomException(e, sys)
 
     finally:
-        s3 = S3Sync()
+        s3 = S3Operation()
+
+        tp = TrainingPipelineConfig()
 
         s3.sync_folder_to_s3(
-            folder=training_pipeline_config.artifact_dir,
-            bucket_name=training_pipeline_config.artifact_bucket_name,
-            bucket_folder_name=training_pipeline_config.artifact_dir,
+            folder=tp.artifact_dir,
+            bucket_name=tp.artifact_bucket_name,
+            bucket_folder_name=tp.artifact_dir,
         )
 
 

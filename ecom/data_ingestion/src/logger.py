@@ -5,7 +5,7 @@ from src.constant.training_pipeline import TIMESTAMP
 
 LOG_FILE: str = f"{TIMESTAMP}.log"
 
-logs_path = os.path.join(os.getcwd(), "logs", TIMESTAMP)
+logs_path: str = os.path.join(os.getcwd(), "logs", TIMESTAMP)
 
 os.makedirs(logs_path, exist_ok=True)
 
