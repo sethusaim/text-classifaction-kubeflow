@@ -2,13 +2,13 @@ import os
 import sys
 
 import pandas as pd
+from sklearn.model_selection import train_test_split
 
 from src.data_access.ecom_data import EcomData
 from src.entity.artifact_entity import DataIngestionArtifact
 from src.entity.config_entity import DataIngestionConfig
 from src.exception import EcomException
 from src.logger import logging
-from sklearn.model_selection import train_test_split
 
 
 class DataIngestion:
