@@ -20,7 +20,9 @@ class S3Operation:
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
         try:
-            os.system(f"aws s3 sync s3://{bucket_name}/{bucket_folder_name}/ {folder} ")
+            os.system(f"aws s3 sync s3://{bucket_name}/{bucket_folder_name}/ {folder}")
+
+            # aws s3 sync s3://ecom-config/config/ artifacts/02_20_2023_10_38_09/data_transformation/config
 
         except Exception as e:
             raise EcomException(e, sys)
