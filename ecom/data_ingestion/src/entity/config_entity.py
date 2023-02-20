@@ -1,27 +1,19 @@
 import os
-from datetime import datetime
 
 from src.constant import training_pipeline
 
 
 class TrainingPipelineConfig:
     def __init__(self):
-        timestamp = datetime.now().strftime("%m_%d_%Y_%H_%M_%S")
-
-        self.pipeline_name: str = training_pipeline.PIPELINE_NAME
-
-        self.artifact_dir: str = training_pipeline.ARTIFACT_DIR + "/" + timestamp
+        self.artifact_dir: str = training_pipeline.ARTIFACT_DIR
 
         self.artifact_bucket_name: str = training_pipeline.APP_ARTIFACTS_BUCKET
 
 
 class DataIngestionConfig:
-    def __init__(
-        self,
-    ):
+    def __init__(self):
         self.data_ingestion_dir: str = os.path.join(
-            TrainingPipelineConfig.artifact_dir,
-            training_pipeline.DATA_INGESTION_DIR_NAME,
+            training_pipeline.ARTIFACT_DIR + "/" + training_pipeline.TIMESTAMP
         )
 
         self.feature_store_dir: str = os.path.join(
