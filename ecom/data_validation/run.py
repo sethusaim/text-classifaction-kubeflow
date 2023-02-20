@@ -8,8 +8,6 @@ from src.entity.config_entity import TrainingPipelineConfig
 
 s3 = S3Operation()
 
-tp = TrainingPipelineConfig()
-
 
 def start_data_validation():
     try:
@@ -23,6 +21,8 @@ def start_data_validation():
         raise EcomException(e, sys)
 
     finally:
+        tp = TrainingPipelineConfig()
+
         s3.sync_folder_to_s3(
             folder=tp.artifact_dir,
             bucket_folder_name=tp.artifact_dir,
