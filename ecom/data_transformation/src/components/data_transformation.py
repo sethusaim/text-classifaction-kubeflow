@@ -77,25 +77,39 @@ class DataTransformation:
     def split_data(
         self, data_frame: pd.DataFrame
     ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        logging.info("Entered split_data method of DataTransformation class")
+
         try:
             X, y = (
                 data_frame.drop(training_pipeline.TARGET_COL, axis=1),
                 data_frame[training_pipeline.TARGET_COL],
             )
 
+            logging.info("Created features and targets dataframe")
+
             X_train, X_test, y_train, y_test = train_test_split(
                 X, y, **training_pipeline.SPLIT_KWARGS
             )
 
+            logging.info("Performed train test split based on kwargs")
+
             data_train = pd.concat([X_train, y_train], axis=1)
+
+            logging.info("Created training data")
 
             X_val, X_test, y_val, y_test = train_test_split(
                 X_test, y_test, **training_pipeline.SPLIT_KWARGS
             )
 
+            logging.info("Created validation and test dataframe")
+
             df_val = pd.concat([X_val, y_val], axis=1)
 
             df_test = pd.concat([X_test, y_test], axis=1)
+
+            logging.info("Created validation and testing data")
+
+            logging.info("Exited split_data method of DataTransformation class")
 
             return data_train, df_val, df_test
 
@@ -135,10 +149,14 @@ class DataTransformation:
                 typ="series",
             )
 
+            logging.info("Got acronyms dict")
+
             contractions_dict = pd.read_json(
                 self.data_transformation_config.data_transformation_contraction_file_path,
                 typ="series",
             )
+
+            logging.info("Got contractions dict")
 
             df_train, df_val, df_test = self.split_data(data_frame=df)
 
@@ -152,13 +170,19 @@ class DataTransformation:
                 text_normalizer, args=(acronyms_dict, contractions_dict)
             )
 
+            logging.info("Applied text_normalizer on train data")
+
             data_val_norm["normalized description"] = df_val["description"].apply(
                 text_normalizer, args=(acronyms_dict, contractions_dict)
             )
 
+            logging.info("Applied text_normalizer on validation data")
+
             data_test_norm["normalized description"] = df_test["description"].apply(
                 text_normalizer, args=(acronyms_dict, contractions_dict)
             )
+
+            logging.info("Applied text_normalizer on test data")
 
             data_train_norm["label"] = df_train["label"]
 
@@ -189,7 +213,7 @@ class DataTransformation:
 
             X_test_tfidf = tfidf.transform(X_test_norm)
 
-            # sparse.save_npz("transformed_train_features.npz", X_train_tfidf)
+            logging.info("Transformed train,val and test data using TfidfVectorizer")
 
             sparse.save_npz(
                 self.data_transformation_config.transformed_train_features_file_path,
@@ -206,6 +230,8 @@ class DataTransformation:
                 X_test_tfidf,
             )
 
+            logging.info("Saved transformed train,val and test features")
+
             save_object(
                 self.data_transformation_config.transformed_train_targets_file_path,
                 y_train,
@@ -219,6 +245,8 @@ class DataTransformation:
                 self.data_transformation_config.transformed_test_targets_file_path,
                 y_test,
             )
+
+            logging.info("Saved transformed train,val and test targets")
 
             logging.info(
                 "Exited initiate_data_transformation method of DataTransformation class"

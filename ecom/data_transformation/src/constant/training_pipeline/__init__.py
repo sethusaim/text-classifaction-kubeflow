@@ -37,11 +37,11 @@ DATA_TRANSFORMATION_ACRONYMS_CONFIG_FILE: str = "english_acronyms.json"
 
 DATA_TRANSFORMATION_CONTRACTIONS_CONFIG_FILE: str = "english_contractions.json"
 
-TRANSFORMED_FEATURES_TRAIN_FILE: str = "transformed_train_features.csv"
+TRANSFORMED_FEATURES_TRAIN_FILE: str = "transformed_train_features"
 
-TRANSFORMED_FEATURES_VAL_FILE: str = "transformed_val_features.csv"
+TRANSFORMED_FEATURES_VAL_FILE: str = "transformed_val_features"
 
-TRANSFORMED_FEATURES_TEST_FILE: str = "transformed_test_features.csv"
+TRANSFORMED_FEATURES_TEST_FILE: str = "transformed_test_features"
 
 TRANSFORMED_TARGETS_TRAIN_FILE: str = "transformed_train_targets.pkl"
 
