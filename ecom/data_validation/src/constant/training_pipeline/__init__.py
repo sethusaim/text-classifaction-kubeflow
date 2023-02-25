@@ -1,10 +1,10 @@
 import os
 
-ARTIFACT_DIR = "artifacts"
+ARTIFACT_DIR: str = "artifacts"
 
 ARTIFACTS_BUCKET_NAME: str = "15787ecom-artifacts"
 
-SCHEMA_FILE_PATH = os.path.join("config", "schema.yaml")
+SCHEMA_FILE_PATH: str = os.path.join("config", "schema.yaml")
 
 TRAIN_FILE_NAME: str = "ecom_train.csv"
 
