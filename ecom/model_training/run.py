@@ -20,9 +20,13 @@ def start_model_training():
 
     except Exception as e:
         raise EcomException(e, sys)
-    
+
     finally:
-        s3.sync_folder_to_s3(folder=tp.artifacts_dir,bucket_name=tp.artifact_bucket_name,bucket_folder_name=tp.artifacts_dir)
+        s3.sync_folder_to_s3(
+            folder=tp.artifacts_dir,
+            bucket_name=tp.artifact_bucket_name,
+            bucket_folder_name=tp.artifacts_dir,
+        )
 
 
 if __name__ == "__main__":
