@@ -2,7 +2,6 @@ import sys
 
 from src.cloud_storage.aws_operation import S3Operation
 from src.components.data_transformation import DataTransformation
-from src.constant.training_pipeline import ARTIFACTS_BUCKET_NAME
 from src.entity.config_entity import TrainingPipelineConfig
 from src.exception import EcomException
 
@@ -13,7 +12,7 @@ tp = TrainingPipelineConfig()
 
 def start_data_transformation():
     try:
-        timestamp = s3.get_pipeline_artifacts(bucket_name=ARTIFACTS_BUCKET_NAME)
+        timestamp = s3.get_pipeline_artifacts(bucket_name=tp.artifact_bucket_name)
 
         data_transformation = DataTransformation(timestamp)
 
