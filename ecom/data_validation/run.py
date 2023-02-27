@@ -12,7 +12,9 @@ tp = TrainingPipelineConfig()
 
 def start_data_validation():
     try:
-        timestamp = s3.get_pipeline_artifacts(bucket_name=tp.artifact_bucket_name)
+        timestamp = s3.get_pipeline_artifacts(
+            bucket_name=tp.artifact_bucket_name, folders=["data_ingestion"]
+        )
 
         data_validation = DataValidation(timestamp)
 

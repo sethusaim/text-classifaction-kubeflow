@@ -1,0 +1,5 @@
+boto3==1.26.79
+certifi==2022.12.7
+pip-chill==1.0.1
+scipy==1.10.1
+wincertstore==0.2

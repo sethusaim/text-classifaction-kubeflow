@@ -12,7 +12,9 @@ tp = TrainingPipelineConfig()
 
 def start_model_training():
     try:
-        timestamp = s3.get_pipeline_artifacts(bucket_name=tp.artifact_bucket_name)
+        timestamp = s3.get_pipeline_artifacts(
+            bucket_name=tp.artifact_bucket_name, folders=["data_transformation"]
+        )
 
         model_trainer = ModelTrainer(timestamp=timestamp)
 
