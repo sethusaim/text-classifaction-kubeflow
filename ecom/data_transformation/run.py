@@ -12,7 +12,7 @@ tp = TrainingPipelineConfig()
 
 def start_data_transformation():
     try:
-        timestamp = s3.get_pipeline_artifacts(bucket_name=tp.artifact_bucket_name)
+        timestamp = s3.get_pipeline_artifacts(bucket_name=tp.artifact_bucket_name,folders=["data_ingestion"])
 
         data_transformation = DataTransformation(timestamp)
 

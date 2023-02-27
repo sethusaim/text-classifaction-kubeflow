@@ -1,12 +1,17 @@
 import os
 import sys
+from typing import List
 
 import boto3
 
 from src.exception import EcomException
+from src.logger import logging
 
 
 class S3Operation:
+    def __init__(self):
+        self.s3_client = boto3.client("s3")
+
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
@@ -22,30 +27,35 @@ class S3Operation:
         try:
             os.system(f"aws s3 sync s3://{bucket_name}/{bucket_folder_name}/ {folder}")
 
-            # aws s3 sync s3://ecom-config/config/ artifacts/02_20_2023_10_38_09/data_transformation/config
-
         except Exception as e:
             raise EcomException(e, sys)
 
-    def get_pipeline_artifacts(self, bucket_name: str) -> None:
-        try:
-            s3_client = boto3.client("s3")
+    def get_pipeline_artifacts(self, bucket_name: str, folders: List) -> str:
+        logging.info("Entered get_pipeline_artifacts method of S3Operation class")
 
-            response = s3_client.list_objects_v2(
-                Bucket=bucket_name, Prefix="artifacts/"
+        try:
+            response = self.s3_client.list_objects_v2(
+                Bucket=bucket_name, Prefix="artifacts"
             )["Contents"]
 
             latest = max(response, key=lambda x: x["LastModified"])["Key"]
 
-            artifacts_dir = "/".join(latest.split("/")[:2])
+            timestamp_artifact_dir = "/".join(latest.split("/")[:2])
 
-            self.sync_folder_from_s3(
-                folder=artifacts_dir,
-                bucket_name=bucket_name,
-                bucket_folder_name=artifacts_dir,
-            )
+            for f in folders:
+                artifact_dir = timestamp_artifact_dir + "/" + f
 
-            return artifacts_dir.split("/")[1]
+                logging.info(f"Got the {f} artifacts dir")
+
+                self.sync_folder_from_s3(
+                    folder=artifact_dir,
+                    bucket_name=bucket_name,
+                    bucket_folder_name=artifact_dir,
+                )
+
+            logging.info("Exited get_pipeline_artifacts method of S3Operation class")
+
+            return artifact_dir.split("/")[1]
 
         except Exception as e:
             raise EcomException(e, sys)
