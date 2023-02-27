@@ -7,7 +7,7 @@ __pycache__/
 *.so
 artifacts/
 logs/
-
+best_model/
 .terraform
 .terraform.lock.hcl
 

@@ -4,6 +4,12 @@ ARTIFACTS_BUCKET_NAME: str = "15787ecom-artifacts"
 
 MODEL_EVALUATION_DIR: str = "model_evaluation"
 
+MODEL_EVALUATION_S3_MODEL_BUCKET: str = "ecom-config"
+
+MODEL_EVALUATION_S3_MODEL_PATH: str = "best_model/model.pkl"
+
+MODEL_EVALUATION_INFO: str = "model_evaluation_info.json"
+
 MODEL_TRAINING_DIR: str = "model_training"
 
 MODEL_TRAINING_BEST_MODEL_INFO: str = "best_model_info.json"

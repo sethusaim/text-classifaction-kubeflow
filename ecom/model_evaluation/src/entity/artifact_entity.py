@@ -44,3 +44,12 @@ class DataTransformationArtifact:
 @dataclass
 class ClassifactionMetricArtifact:
     accuracy_score: float
+
+
+@dataclass
+class ModelEvaluationArtifact:
+    is_model_accepted: bool
+
+    best_model_path: str
+
+    trained_model_path: str

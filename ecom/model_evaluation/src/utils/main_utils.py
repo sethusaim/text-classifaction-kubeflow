@@ -1,16 +1,17 @@
-import pickle
 import sys
 
-from src.exception import EcomException
+import dill
 from scipy import sparse
+
+from src.exception import EcomException
 
 
 def load_object(file_path: str):
     try:
-        with open(file_path, "rb") as f:
-            file_obj = pickle.load(f)
+        with open(file=file_path, mode="rb") as f:
+            obj = dill.load(f)
 
-        return file_obj
+        return obj
 
     except Exception as e:
         raise EcomException(e, sys)

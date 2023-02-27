@@ -9,9 +9,6 @@ from src.logger import logging
 
 
 class S3Operation:
-    def __init__(self):
-        self.s3_client = boto3.client("s3")
-
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
@@ -42,7 +39,9 @@ class S3Operation:
         logging.info("Entered get_pipeline_artifacts method of S3Operation class")
 
         try:
-            response = self.s3_client.list_objects_v2(
+            s3_client = boto3.client("s3")
+
+            response = s3_client.list_objects_v2(
                 Bucket=bucket_name, Prefix="artifacts"
             )["Contents"]
 

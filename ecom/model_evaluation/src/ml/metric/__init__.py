@@ -1,3 +1,4 @@
+import json
 import sys
 
 from sklearn.metrics import accuracy_score
@@ -15,6 +16,17 @@ def calculate_metric(model, x, y) -> ClassifactionMetricArtifact:
         )
 
         return model_metric
+
+    except Exception as e:
+        raise EcomException(e, sys)
+
+
+def get_model_score(file_path: str):
+    try:
+        with open(file=file_path, mode="r") as f:
+            dic = json.load(f)
+
+        return dic["model_score"]["accuracy_score"]
 
     except Exception as e:
         raise EcomException(e, sys)

@@ -1,5 +1,6 @@
 boto3==1.26.79
 certifi==2022.12.7
+dill==0.3.6
 pip-chill==1.0.1
-scipy==1.10.1
+scikit-learn==1.2.1
 wincertstore==0.2
