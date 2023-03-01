@@ -1,11 +1,11 @@
 variable "aws_region" {
   type    = string
-  default = "ap-south-1"
+  default = "us-east-1"
 }
 
 variable "feature_store_bucket_name" {
   type    = string
-  default = "ecom-feature-store"
+  default = "ecom-config"
 }
 
 variable "aws_account_id" {
