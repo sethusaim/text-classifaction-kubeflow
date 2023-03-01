@@ -1,4 +1,4 @@
-ARTIFACTS_BUCKET_NAME: str = "15787ecom-artifacts"
+ARTIFACTS_BUCKET_NAME: str = "3998ecom-artifacts"
 
 ARTIFACT_DIR: str = "artifacts"
 

@@ -10,7 +10,7 @@ ARTIFACT_DIR: str = "artifacts"
 
 LOG_DIR: str = "logs"
 
-APP_ARTIFACTS_BUCKET: str = "15787ecom-artifacts"
+APP_ARTIFACTS_BUCKET: str = "3998ecom-artifacts"
 
 DATABASE_NAME: str = "ineuron"
 

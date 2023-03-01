@@ -1,10 +1,10 @@
 ARTIFACT_DIR: str = "artifacts"
 
-ARTIFACTS_BUCKET_NAME: str = "15787ecom-artifacts"
+ARTIFACTS_BUCKET_NAME: str = "3998ecom-artifacts"
 
 MODEL_EVALUATION_DIR: str = "model_evaluation"
 
-MODEL_EVALUATION_S3_MODEL_BUCKET: str = "ecom-config"
+MODEL_EVALUATION_S3_MODEL_BUCKET: str = "3998ecom-config"
 
 MODEL_EVALUATION_S3_MODEL_PATH: str = "best_model/model.pkl"
 

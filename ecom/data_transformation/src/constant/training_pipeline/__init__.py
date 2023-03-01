@@ -5,7 +5,7 @@ LABEL_DICT: dict = {
     "Clothing & Accessories": 3,
 }
 
-ARTIFACTS_BUCKET_NAME: str = "15787ecom-artifacts"
+ARTIFACTS_BUCKET_NAME: str = "3998ecom-artifacts"
 
 TARGET_COL: str = "label"
 
@@ -31,7 +31,7 @@ SPLIT_KWARGS: dict = {"test_size": 0.3, "random_state": 42}
 
 DATA_TRANSFORMATION_CONFIG_FOLDER: str = "config"
 
-DATA_TRANSFORMATION_CONFIG_BUCKET_NAME: str = "ecom-config"
+DATA_TRANSFORMATION_CONFIG_BUCKET_NAME: str = "3998ecom-config"
 
 DATA_TRANSFORMATION_ACRONYMS_CONFIG_FILE: str = "english_acronyms.json"
 
