@@ -4,9 +4,9 @@ WORKDIR /app
 
 COPY . /app
 
-ARG MONGODB_URL
+ARG MONGO_DB_URL
 
-ENV MONGODB_URL $MONGODB_URL
+ENV MONGO_DB_URL $MONGO_DB_URL
 
 RUN apt update -y && apt install awscli -y && pip install -r requirements.txt
 
