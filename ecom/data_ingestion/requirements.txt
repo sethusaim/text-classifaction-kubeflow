@@ -1,7 +1,11 @@
+awscli==1.27.85
+backports.functools-lru-cache==1.6.4
 boto3==1.26.67
 certifi==2022.12.7
+ipykernel==6.15.0
 pandas==1.5.3
 pip-chill==1.0.1
 pymongo==4.3.3
 scikit-learn==1.2.1
+typing-extensions==4.4.0
 wincertstore==0.2

@@ -8,6 +8,6 @@ ARG MONGO_DB_URL
 
 ENV MONGO_DB_URL $MONGO_DB_URL
 
-RUN apt update -y && apt install awscli -y && pip install -r requirements.txt
+RUN pip install -r requirements.txt
 
 CMD ["python3", "run.py"]
