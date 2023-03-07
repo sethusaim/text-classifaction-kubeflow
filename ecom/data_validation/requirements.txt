@@ -1,6 +1,6 @@
+awscli==1.27.85
 boto3==1.26.72
 certifi==2022.12.7
 pandas==1.5.3
 pip-chill==1.0.1
-pyyaml==6.0
 wincertstore==0.2
