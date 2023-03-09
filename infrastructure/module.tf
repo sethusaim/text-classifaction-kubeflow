@@ -13,3 +13,7 @@ module "ecom_artifacts" {
 module "ecom_config" {
   source = "./ecom_config"
 }
+
+module "ecom_model_registry" {
+  source = "./ecom_model_registry"
+}
