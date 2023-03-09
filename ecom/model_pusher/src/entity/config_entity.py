@@ -14,4 +14,6 @@ class ModelPusherConfig:
             training_pipeline.MODEL_PUSHER_CONFIG_BUCKET
         )
 
-        self.model_pusher_model_path: str = training_pipeline.MODEL_PUSHER_MODEL_PATH
+        self.model_pusher_bucket_file_name: str = (
+            training_pipeline.MODEL_PUSHER_BUCKET_MODEL_PATH
+        )

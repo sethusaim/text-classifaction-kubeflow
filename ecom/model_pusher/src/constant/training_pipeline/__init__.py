@@ -14,4 +14,4 @@ MODEL_EVALUATION_MODEL_INFO: str = "model_evaluation_info.json"
 
 MODEL_PUSHER_CONFIG_BUCKET: str = "3998ecom-config"
 
-MODEL_PUSHER_MODEL_PATH: str = "best_model/model.pkl"
+MODEL_PUSHER_BUCKET_MODEL_PATH: str = "best_model/model.pkl"

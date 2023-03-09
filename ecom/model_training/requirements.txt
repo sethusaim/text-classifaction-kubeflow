@@ -1,6 +1,7 @@
 awscli==1.27.85
 boto3==1.26.78
 certifi==2022.12.7
+dill==0.3.6
 neuro-mf==0.0.5
 pandas==1.5.3
 pip-chill==1.0.1

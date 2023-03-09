@@ -1,5 +1,6 @@
 import sys
 
+from src.cloud_storage.aws_storage import S3Operation
 from src.entity.artifact_entity import ModelEvaluationArtifact, ModelTrainerArtifact
 from src.entity.config_entity import ModelPusherConfig
 from src.exception import EcomException
@@ -17,6 +18,8 @@ class ModelPusher:
             ModelEvaluationArtifact(timestamp=timestamp)
         )
 
+        self.s3 = S3Operation()
+
         self.model_pusher_config: ModelPusherConfig = ModelPusherConfig()
 
     def initiate_model_pusher(self):
@@ -29,6 +32,12 @@ class ModelPusher:
 
             if dic["is_model_accepted"] is True:
                 logging.info("Trained model is accepted")
+
+                self.s3.upload_file(
+                    file_name=dic["trained_model_path"],
+                    bucket_name=self.model_pusher_config.model_pusher_bucket_name,
+                    bucket_file_name=self.model_pusher_config.model_pusher_bucket_file_name,
+                )
 
             else:
                 logging.info("Trained Model is not accepted")

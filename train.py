@@ -10,6 +10,7 @@ from ecom.api.auth import get_istio_auth_session
 KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
 KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
 KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
+MONGO_DB_URL = os.environ["MONGO_DB_URL"]
 
 auth_session = get_istio_auth_session(
     url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
@@ -25,34 +26,50 @@ data_transformation = load_component_from_file(
 
 model_training = load_component_from_file("kfp_components/model_training.yaml")
 
+model_evaluation = load_component_from_file("kfp_components/model_evaluation.yaml")
+
+model_pusher = load_component_from_file("kfp_components/model_pusher.yaml")
+
 
 @pipeline(name="Train Pipeline")
 def train_pipeline():
     task_1: ContainerOp = data_ingestion()
 
-    task_1.set_caching_options(enable_caching=False)
-
     task_2: ContainerOp = data_validation()
 
-    task_2.after(task_1).set_caching_options(enable_caching=False)
+    task_2.after(task_1)
 
     task_3: ContainerOp = data_transformation()
 
-    task_3.after(task_2).set_caching_options(enable_caching=False)
+    task_3.after(task_2)
 
     task_4: ContainerOp = model_training()
 
-    task_4.after(task_3).set_caching_options(enable_caching=False)
+    task_4.after(task_3)
+
+    task_5: ContainerOp = model_evaluation()
+
+    task_5.after(task_4)
+
+    task_6: ContainerOp = model_pusher()
+
+    task_6.after(task_5)
 
 
 if __name__ == "__main__":
-    client = Client(
-        host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"]
+    Compiler().compile(
+        pipeline_func=train_pipeline, package_path="training-pipeline.yaml"
     )
 
-    client.create_run_from_pipeline_func(
-        pipeline_func=train_pipeline,
-        arguments={},
-        namespace="kubeflow-user-example-com",
-        experiment_name="kube-ecom-sa",
-    ).wait_for_run_completion()
+    # client = Client(
+    #     host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"]
+    # )
+
+    # client.create_run_from_pipeline_func(
+    #     pipeline_func=train_pipeline,
+    #     arguments={},
+    #     namespace="kubeflow-user-example-com",
+    #     experiment_name="ecom-exp",
+    #     service_account="kube-ecom-sa",
+    #     enable_caching=False,
+    # ).wait_for_run_completion()

@@ -12,6 +12,8 @@ class S3Operation:
     def __init__(self):
         self.s3_client = boto3.client("s3")
 
+        self.s3_resource = boto3.resource("s3")
+
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
@@ -64,6 +66,19 @@ class S3Operation:
             logging.info("Exited get_pipeline_artifacts method of S3Operation class")
 
             return artifact_dir.split("/")[1]
+
+        except Exception as e:
+            raise EcomException(e, sys)
+
+    def upload_file(self, file_name, bucket_name, bucket_file_name) -> None:
+        logging.info("Entered upload_file method of S3Operation class")
+
+        try:
+            self.s3_resource.meta.client.upload_file(
+                file_name, bucket_name, bucket_file_name
+            )
+
+            logging.info("Exited upload_file method of S3Operation class")
 
         except Exception as e:
             raise EcomException(e, sys)
