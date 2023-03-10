@@ -17,3 +17,5 @@ model_evaluation:
 
 model_pusher:
 	bash scripts/build_and_push_component.sh ecom/model_pusher ecom_model_pusher
+
+build_components: data_ingestion data_validation data_transformation model_training model_evaluation model_pusher

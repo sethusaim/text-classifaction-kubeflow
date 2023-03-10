@@ -4,17 +4,18 @@ from kfp import Client
 from kfp.compiler import Compiler
 from kfp.components import load_component_from_file
 from kfp.dsl import ContainerOp, pipeline
+from kubernetes.client.models import V1EnvVar
 
 from ecom.api.auth import get_istio_auth_session
 
-KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
-KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
-KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
+# KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
+# KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
+# KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
 MONGO_DB_URL = os.environ["MONGO_DB_URL"]
 
-auth_session = get_istio_auth_session(
-    url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
-)
+# auth_session = get_istio_auth_session(
+#     url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
+# )
 
 data_ingestion = load_component_from_file("kfp_components/data_ingestion.yaml")
 
@@ -34,6 +35,10 @@ model_pusher = load_component_from_file("kfp_components/model_pusher.yaml")
 @pipeline(name="Train Pipeline")
 def train_pipeline():
     task_1: ContainerOp = data_ingestion()
+
+    env_var = V1EnvVar(name="MONGO_DB_URL", value=MONGO_DB_URL)
+
+    task_1.container.add_env_variable(env_var)
 
     task_2: ContainerOp = data_validation()
 
