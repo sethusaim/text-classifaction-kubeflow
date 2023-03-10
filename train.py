@@ -7,17 +7,10 @@ from kubernetes.client.models import V1EnvVar
 
 from ecom.api.auth import get_istio_auth_session
 
-# KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
-# KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
-# KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
-# MONGO_DB_URL = os.environ["MONGO_DB_URL"]
-
-KUBEFLOW_ENDPOINT = (
-    "http://ac4c22defe31c4a36b58c465bd654f76-1822881555.us-east-1.elb.amazonaws.com/"
-)
-KUBEFLOW_USERNAME = "user@example.com"
-KUBEFLOW_PASSWORD = 12341234
-MONGO_DB_URL = "mongodb+srv://iNeuron:RsPGmJUa69n558n@ineuron-ai-projects.7eh1w4s.mongodb.net/?retryWrites=true&w=majority"
+KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
+KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
+KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
+MONGO_DB_URL = os.environ["MONGO_DB_URL"]
 
 auth_session = get_istio_auth_session(
     url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
