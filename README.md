@@ -1,1 +1,1 @@
-# Text Classifaction using Kubeflow
+# Text Classification using Kubeflow
