@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Build and push kfp components
-        run: make
+        run: make build_components
 
   training:
     name: Continuous Training
@@ -50,5 +50,15 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
-      - name: Build and push kfp components
-        run: make build_components
+      - name: Install kfp requirements
+        run: |
+          pip3 install -r requirements.txt
+
+      - name: Run kfp training pipeline
+        env:
+          KUBEFLOW_ENDPOINT: ${{ secrets.KUBEFLOW_ENDPOINT }}
+          KUBEFLOW_USERNAME: ${{ secrets.KUBEFLOW_USERNAME }}
+          KUBEFLOW_PASSWORD: ${{ secrets.KUBEFLOW_PASSWORD }}
+          MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
+        run: |
+          python3 train.py

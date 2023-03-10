@@ -1,21 +1,20 @@
 import os
 
 from kfp import Client
-from kfp.compiler import Compiler
 from kfp.components import load_component_from_file
 from kfp.dsl import ContainerOp, pipeline
 from kubernetes.client.models import V1EnvVar
 
 from ecom.api.auth import get_istio_auth_session
 
-# KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
-# KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
-# KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
+KUBEFLOW_ENDPOINT = os.environ["KUBEFLOW_ENDPOINT"]
+KUBEFLOW_USERNAME = os.environ["KUBEFLOW_USERNAME"]
+KUBEFLOW_PASSWORD = os.environ["KUBEFLOW_PASSWORD"]
 MONGO_DB_URL = os.environ["MONGO_DB_URL"]
 
-# auth_session = get_istio_auth_session(
-#     url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
-# )
+auth_session = get_istio_auth_session(
+    url=KUBEFLOW_ENDPOINT, username=KUBEFLOW_USERNAME, password=KUBEFLOW_PASSWORD
+)
 
 data_ingestion = load_component_from_file("kfp_components/data_ingestion.yaml")
 
@@ -62,19 +61,15 @@ def train_pipeline():
 
 
 if __name__ == "__main__":
-    Compiler().compile(
-        pipeline_func=train_pipeline, package_path="training-pipeline.yaml"
+    client = Client(
+        host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"]
     )
 
-    # client = Client(
-    #     host=f"{KUBEFLOW_ENDPOINT}/pipeline", cookies=auth_session["session_cookie"]
-    # )
-
-    # client.create_run_from_pipeline_func(
-    #     pipeline_func=train_pipeline,
-    #     arguments={},
-    #     namespace="kubeflow-user-example-com",
-    #     experiment_name="ecom-exp",
-    #     service_account="kube-ecom-sa",
-    #     enable_caching=False,
-    # ).wait_for_run_completion()
+    client.create_run_from_pipeline_func(
+        pipeline_func=train_pipeline,
+        arguments={},
+        namespace="kubeflow-user-example-com",
+        experiment_name="ecom-exp",
+        service_account="kube-ecom-sa",
+        enable_caching=False,
+    ).wait_for_run_completion()
