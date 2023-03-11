@@ -1,10 +1,10 @@
-name: Run Training Pipeline
+name: Run Continous Integration Pipeline
 
 on:
   workflow_dispatch:
   repository_dispatch:
     types:
-      - continuous-training
+      - continuous-integration
 
 permissions:
   id-token: write
@@ -34,31 +34,3 @@ jobs:
 
       - name: Build and push kfp components
         run: make build_components
-
-  training:
-    name: Continuous Training
-    runs-on: ubuntu-latest
-    needs: delivery
-    steps:
-      - name: Checkout Code
-        uses: actions/checkout@v3
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v1
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Install kfp requirements
-        run: |
-          pip3 install -r requirements.txt
-
-      - name: Run kfp training pipeline
-        env:
-          KUBEFLOW_ENDPOINT: ${{ secrets.KUBEFLOW_ENDPOINT }}
-          KUBEFLOW_USERNAME: ${{ secrets.KUBEFLOW_USERNAME }}
-          KUBEFLOW_PASSWORD: ${{ secrets.KUBEFLOW_PASSWORD }}
-          MONGO_DB_URL: ${{ secrets.MONGO_DB_URL }}
-        run: |
-          python3 train.py
