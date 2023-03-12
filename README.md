@@ -1,1 +1,1 @@
-# Text Classification using Kubeflow
+# Text Classification using Tekton Pipelines
