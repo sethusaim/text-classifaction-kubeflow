@@ -1,6 +1,6 @@
 import sys
 
-from src.exception import EcomException
+from src.exception import CustomException
 from src.cloud_storage.aws_storage import S3Operation
 from src.entity.config_entity import TrainingPipelineConfig
 from src.components.model_pusher import ModelPusher
@@ -22,7 +22,7 @@ def start_model_pusher():
         model_pusher.initiate_model_pusher()
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
 
 if __name__ == "__main__":

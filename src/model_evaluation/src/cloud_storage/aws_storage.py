@@ -4,7 +4,7 @@ from typing import List
 
 import boto3
 
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 
 
@@ -20,7 +20,7 @@ class S3Operation:
             logging.info("Exited sync_folder_to_s3 method of S3Operation class")
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def sync_folder_from_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
@@ -33,7 +33,7 @@ class S3Operation:
             logging.info("Exited sync_folder_from_s3 method of S3Operation class")
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def get_pipeline_artifacts(self, bucket_name: str, folders: List) -> str:
         logging.info("Entered get_pipeline_artifacts method of S3Operation class")
@@ -65,4 +65,4 @@ class S3Operation:
             return artifact_dir.split("/")[1]
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

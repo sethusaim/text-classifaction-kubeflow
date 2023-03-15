@@ -1,6 +1,6 @@
 import sys
 
-from src.exception import EcomException
+from src.exception import CustomException
 import json
 
 
@@ -12,4 +12,4 @@ def read_json(file_path: str):
         return dic
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

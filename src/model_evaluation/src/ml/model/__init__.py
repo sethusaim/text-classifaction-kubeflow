@@ -4,7 +4,7 @@ import sys
 import boto3
 from typing import Union
 from src.cloud_storage.aws_storage import S3Operation
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 
 s3 = S3Operation()
@@ -27,7 +27,7 @@ def is_model_present(model_path: str, bucket_name: str) -> bool:
             return False
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
 
 def get_s3_model(model_path: str, bucket_name: str) -> Union[str, None]:
@@ -55,4 +55,4 @@ def get_s3_model(model_path: str, bucket_name: str) -> Union[str, None]:
             return None
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

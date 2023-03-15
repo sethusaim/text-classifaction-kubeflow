@@ -14,7 +14,7 @@ from src.constant import training_pipeline
 from src.constant.training_pipeline import LABEL_DICT
 from src.entity.artifact_entity import DataValidationArtifact
 from src.entity.config_entity import DataTransformationConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 from src.ml.feature import text_normalizer
 from src.utils.main_utils import save_object
@@ -57,7 +57,7 @@ class DataTransformation:
             return df
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def encode_target_cols(self, dataframe: pd.DataFrame) -> pd.DataFrame:
         logging.info("Entered encode_target_cols method of DataTransformation class")
@@ -72,7 +72,7 @@ class DataTransformation:
             return dataframe
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def split_data(
         self, data_frame: pd.DataFrame
@@ -114,7 +114,7 @@ class DataTransformation:
             return data_train, df_val, df_test
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def initiate_data_transformation(self):
         logging.info(
@@ -253,4 +253,4 @@ class DataTransformation:
             )
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

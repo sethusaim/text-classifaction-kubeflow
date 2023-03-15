@@ -7,7 +7,7 @@ from src.cloud_storage.aws_operations import S3Operation
 from src.constant.training_pipeline import SCHEMA_FILE_PATH
 from src.entity.artifact_entity import DataIngestionArtifact, DataValidationArtifact
 from src.entity.config_entity import DataValidationConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import read_yaml_file
 
@@ -49,7 +49,7 @@ class DataValidation:
             return False
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def initiate_data_validation(self) -> DataValidationArtifact:
         try:
@@ -112,4 +112,4 @@ class DataValidation:
             return data_validation_artifact
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

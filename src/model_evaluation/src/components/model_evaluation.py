@@ -9,7 +9,7 @@ from src.entity.artifact_entity import (
     ModelTrainerArtifact,
 )
 from src.entity.config_entity import EvaluationModelResponse, ModelEvaluationConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 from src.ml.metric import calculate_metric, get_model_score
 from src.ml.model import get_s3_model
@@ -102,7 +102,7 @@ class ModelEvaluation:
             return model_eval_result
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def initiate_model_evaluation(self):
         logging.info(
@@ -132,4 +132,4 @@ class ModelEvaluation:
             )
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

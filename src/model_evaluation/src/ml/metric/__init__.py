@@ -4,7 +4,7 @@ import sys
 from sklearn.metrics import accuracy_score
 
 from src.entity.artifact_entity import ClassifactionMetricArtifact
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 def calculate_metric(model, x, y) -> ClassifactionMetricArtifact:
@@ -18,7 +18,7 @@ def calculate_metric(model, x, y) -> ClassifactionMetricArtifact:
         return model_metric
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
 
 def get_model_score(file_path: str):
@@ -29,4 +29,4 @@ def get_model_score(file_path: str):
         return dic["model_score"]["accuracy_score"]
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

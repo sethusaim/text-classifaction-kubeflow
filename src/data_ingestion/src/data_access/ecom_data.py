@@ -5,7 +5,7 @@ import pandas as pd
 
 from src.configuration.mongo_db_connection import MongoDBClient
 from src.constant.training_pipeline import DATABASE_NAME
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 class EcomData:
@@ -14,7 +14,7 @@ class EcomData:
             self.mongo_client = MongoDBClient(database_name=DATABASE_NAME)
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def export_collection_as_dataframe(
         self, collection_name: str, database_name: Optional[str] = None
@@ -45,4 +45,4 @@ class EcomData:
             return df
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

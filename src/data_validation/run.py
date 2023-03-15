@@ -1,7 +1,7 @@
 import sys
 
 from src.components.data_validation import DataValidation
-from src.exception import EcomException
+from src.exception import CustomException
 from src.cloud_storage.aws_operations import S3Operation
 from src.entity.config_entity import TrainingPipelineConfig
 
@@ -21,7 +21,7 @@ def start_data_validation():
         data_validation.initiate_data_validation()
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
     finally:
         s3.sync_folder_to_s3(

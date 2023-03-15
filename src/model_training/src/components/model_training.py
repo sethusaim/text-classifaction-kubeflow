@@ -9,7 +9,7 @@ from src.entity.artifact_entity import (
     ModelInfoArtifact,
 )
 from src.entity.config_entity import ModelTrainerConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 from src.ml.metric import calculate_metric
 from src.utils.main_utils import load_csr_matrix, load_object, save_object
@@ -88,4 +88,4 @@ class ModelTrainer:
             logging.info("Exited initiate_model_training method of ModelTrainer class")
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

@@ -3,7 +3,7 @@ import sys
 
 import yaml
 
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 def read_yaml_file(file_path: str) -> dict:
@@ -21,7 +21,7 @@ def read_yaml_file(file_path: str) -> dict:
             return yaml.safe_load(yaml_file)
 
     except Exception as e:
-        raise EcomException(e, sys) from e
+        raise CustomException(e, sys) from e
 
 
 def write_yaml_file(file_path: str, content: object, replace: bool = False) -> None:
@@ -44,4 +44,4 @@ def write_yaml_file(file_path: str, content: object, replace: bool = False) -> N
             yaml.dump(content, file)
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

@@ -4,7 +4,7 @@ from src.cloud_storage.aws_operation import S3Operation
 from src.components.data_ingestion import DataIngestion
 from src.entity.artifact_entity import DataIngestionArtifact
 from src.entity.config_entity import TrainingPipelineConfig
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 def start_data_ingestion() -> DataIngestionArtifact:
@@ -14,7 +14,7 @@ def start_data_ingestion() -> DataIngestionArtifact:
         data_ingestion.initiate_data_ingestion()
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
     finally:
         s3 = S3Operation()

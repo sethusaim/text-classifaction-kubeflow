@@ -3,7 +3,7 @@ import sys
 import dill
 from scipy import sparse
 
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 def load_object(file_path: str):
@@ -14,7 +14,7 @@ def load_object(file_path: str):
         return obj
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
 
 def load_csr_matrix(file_path: str):
@@ -24,4 +24,4 @@ def load_csr_matrix(file_path: str):
         return file_obj
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

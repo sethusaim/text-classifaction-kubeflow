@@ -3,7 +3,7 @@ import sys
 from src.cloud_storage.aws_operation import S3Operation
 from src.components.data_transformation import DataTransformation
 from src.entity.config_entity import TrainingPipelineConfig
-from src.exception import EcomException
+from src.exception import CustomException
 
 s3 = S3Operation()
 
@@ -21,7 +21,7 @@ def start_data_transformation():
         data_transformation.initiate_data_transformation()
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
     finally:
         s3.sync_folder_to_s3(

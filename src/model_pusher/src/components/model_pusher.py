@@ -3,7 +3,7 @@ import sys
 from src.cloud_storage.aws_storage import S3Operation
 from src.entity.artifact_entity import ModelEvaluationArtifact, ModelTrainerArtifact
 from src.entity.config_entity import ModelPusherConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 from src.utils.main_utils import read_json
 
@@ -47,4 +47,4 @@ class ModelPusher:
             logging.info("Exited initiate_model_pusher method of ModelPusher class")
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

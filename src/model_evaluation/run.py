@@ -1,6 +1,6 @@
 import sys
 
-from src.exception import EcomException
+from src.exception import CustomException
 from src.cloud_storage.aws_storage import S3Operation
 from src.entity.config_entity import TrainingPipelineConfig
 from src.components.model_evaluation import ModelEvaluation
@@ -22,7 +22,7 @@ def start_model_evaluation():
         model_evaluation.initiate_model_evaluation()
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
     finally:
         s3.sync_folder_to_s3(

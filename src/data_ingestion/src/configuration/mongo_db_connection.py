@@ -5,7 +5,7 @@ import certifi
 from pymongo import MongoClient
 
 from src.constant.training_pipeline import DATABASE_NAME, MONGODB_URL_KEY
-from src.exception import EcomException
+from src.exception import CustomException
 
 ca = certifi.where()
 
@@ -37,4 +37,4 @@ class MongoDBClient:
             self.database_name = database_name
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)

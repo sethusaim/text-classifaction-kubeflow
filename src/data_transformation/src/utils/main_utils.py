@@ -3,7 +3,7 @@ import sys
 
 from scipy import sparse
 
-from src.exception import EcomException
+from src.exception import CustomException
 
 
 def save_csr_matrix(matrix, file_path: str):
@@ -11,7 +11,7 @@ def save_csr_matrix(matrix, file_path: str):
         sparse.save_npz(file_path, matrix)
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)
 
 
 def save_object(file_name, obj):
@@ -20,4 +20,4 @@ def save_object(file_name, obj):
             pickle.dump(obj, f)
 
     except Exception as e:
-        raise EcomException(e, sys)
+        raise CustomException(e, sys)

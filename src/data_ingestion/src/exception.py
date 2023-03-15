@@ -13,7 +13,7 @@ def error_message_detail(error: Exception, error_detail: sys) -> str:
     return error_message
 
 
-class EcomException(Exception):
+class CustomException(Exception):
     def __init__(self, error_message: Exception, error_detail: sys):
         """
         :param error_message: error message in string format

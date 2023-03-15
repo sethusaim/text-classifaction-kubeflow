@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from src.data_access.ecom_data import EcomData
 from src.entity.artifact_entity import DataIngestionArtifact
 from src.entity.config_entity import DataIngestionConfig
-from src.exception import EcomException
+from src.exception import CustomException
 from src.logger import logging
 
 
@@ -48,7 +48,7 @@ class DataIngestion:
             return dataframe
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def split_data_as_train_test(self, dataframe: pd.DataFrame) -> None:
         """
@@ -85,7 +85,7 @@ class DataIngestion:
             logging.info(f"Exported train and test file path.")
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
 
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
         """
@@ -112,4 +112,4 @@ class DataIngestion:
             return data_ingestion_artifact
 
         except Exception as e:
-            raise EcomException(e, sys)
+            raise CustomException(e, sys)
