@@ -9,7 +9,7 @@ from src.exception import CustomException
 
 def calculate_metric(model, x, y) -> ClassifactionMetricArtifact:
     try:
-        yhat = model.predict(x)
+        yhat = model.predict([x])
 
         model_metric = ClassifactionMetricArtifact(
             accuracy_score=accuracy_score(y, yhat)

@@ -9,6 +9,9 @@ from src.logger import logging
 
 
 class S3Operation:
+    def __init__(self):
+        self.s3_resource = boto3.resource("s3")
+
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
@@ -63,6 +66,23 @@ class S3Operation:
             logging.info("Exited get_pipeline_artifacts method of S3Operation class")
 
             return artifact_dir.split("/")[1]
+
+        except Exception as e:
+            raise CustomException(e, sys)
+
+    def is_model_present(self, model_path: str, bucket_name: str) -> bool:
+        try:
+            bucket = self.s3_resource.Bucket(bucket_name)
+
+            file_objects = [
+                file_object for file_object in bucket.objects.filter(Prefix=model_path)
+            ]
+
+            if len(file_objects) > 0:
+                return True
+
+            else:
+                return False
 
         except Exception as e:
             raise CustomException(e, sys)

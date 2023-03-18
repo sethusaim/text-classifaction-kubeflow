@@ -12,8 +12,8 @@ from src.entity.config_entity import EvaluationModelResponse, ModelEvaluationCon
 from src.exception import CustomException
 from src.logger import logging
 from src.ml.metric import calculate_metric, get_model_score
-from src.ml.model import get_s3_model
-from src.utils.main_utils import load_csr_matrix, load_object
+from src.ml.model.estimator import get_s3_model
+from src.utils.main_utils import load_object
 
 
 class ModelEvaluation:
@@ -36,7 +36,7 @@ class ModelEvaluation:
         logging.info("Entered evaluate_model method of ModelEvaluation class")
 
         try:
-            test_features = load_csr_matrix(
+            test_features = load_object(
                 self.data_transformation_artifact.transformed_test_features
             )
 

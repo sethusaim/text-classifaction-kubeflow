@@ -20,6 +20,6 @@ DATA_TRANSFORMATION_DIR: str = "data_transformation"
 
 DATA_TRANSFORMATION_TRANSFORMED_DIR: str = "transformed"
 
-DATA_TRANSFORMATION_TEST_FEATURES: str = "transformed_test_features.npz"
+DATA_TRANSFORMATION_TEST_FEATURES: str = "transformed_test_features.pkl"
 
 DATA_TRANSFORMATION_TEST_TARGETS: str = "transformed_test_targets.pkl"
