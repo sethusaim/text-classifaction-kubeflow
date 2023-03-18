@@ -1,17 +1,19 @@
+import json
 import sys
 
 from neuro_mf import ModelFactory
-import json
 
 from src.entity.artifact_entity import (
     ClassifactionMetricArtifact,
     DataTransformationArtifact,
-    ModelInfoArtifact,
+    ModelTrainerArtifact,
 )
 from src.entity.config_entity import ModelTrainerConfig
 from src.exception import CustomException
 from src.logger import logging
 from src.ml.metric import calculate_metric
+from src.ml.mlflow import MLFLowOperation
+from src.ml.model.estimator import CustomModel
 from src.utils.main_utils import load_csr_matrix, load_object, save_object
 
 
@@ -24,6 +26,8 @@ class ModelTrainer:
         self.data_transformation_artifact: DataTransformationArtifact = (
             DataTransformationArtifact(timestamp=timestamp)
         )
+
+        self.mlflow_op = MLFLowOperation()
 
     def initiate_model_training(self):
         logging.info("Entered initiate_model_training method of ModelTrainer class")
@@ -45,6 +49,10 @@ class ModelTrainer:
                 file_path=self.data_transformation_artifact.transformed_val_targets
             )
 
+            vectorizer_obj = load_object(
+                file_path=self.data_transformation_artifact.vectorized_file_path
+            )
+
             model_factory = ModelFactory(
                 model_config_path=self.model_trainer_config.model_trainer_config_file_path
             )
@@ -63,8 +71,12 @@ class ModelTrainer:
 
                 raise Exception("No best model found with score more than base score")
 
+            custom_model = CustomModel(
+                preprocessor=vectorizer_obj, model=best_model_detail.best_model
+            )
+
             save_object(
-                obj=best_model_detail.best_model,
+                obj=custom_model,
                 file_path=self.model_trainer_config.model_trainer_model_file_path,
             )
 
@@ -72,7 +84,7 @@ class ModelTrainer:
                 best_model_detail.best_model, x=X_val_features, y=y_val_targets
             )
 
-            best_model_info: ModelInfoArtifact = ModelInfoArtifact(
+            model_trainer_artifact: ModelTrainerArtifact = ModelTrainerArtifact(
                 model_name=best_model_detail.best_model.__class__.__name__,
                 model_score=model_metric.__dict__,
                 model_parameters=best_model_detail.best_parameters,
@@ -81,9 +93,9 @@ class ModelTrainer:
             with open(
                 self.model_trainer_config.model_trainer_best_model_info_path, "w"
             ) as f:
-                json.dump(best_model_info.__dict__, f)
+                json.dump(model_trainer_artifact.__dict__, f)
 
-            logging.info(f"Best model info is : {best_model_info}")
+            logging.info(f"Model Trainer Artifact is : {model_trainer_artifact}")
 
             logging.info("Exited initiate_model_training method of ModelTrainer class")
 

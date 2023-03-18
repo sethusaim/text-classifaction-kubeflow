@@ -2,9 +2,13 @@ ARTIFACTS_BUCKET_NAME: str = "41644ecom-artifacts"
 
 ARTIFACT_DIR: str = "artifacts"
 
+EXP_NAME: str = "ecom_mlops"
+
 MODEL_TRAINING_DIR: str = "model_training"
 
 MODEL_TRAINER_EXCEPTED_SCORE: float = 0.6
+
+MODEL_TRAINER_MODEL_METRIC_KEY: str = "roc_auc_score"
 
 MODEL_TRAINER_CONFIG_FILE_PATH: str = "config/model.yaml"
 
@@ -23,3 +27,5 @@ DATA_TRANSFORMATION_VAL_FEATURES: str = "transformed_val_features.npz"
 DATA_TRANSFORMATION_TRAIN_TARGETS: str = "transformed_train_targets.pkl"
 
 DATA_TRANSFORMATION_VAL_TARGETS: str = "transformed_val_targets.pkl"
+
+DATA_TRANSFORMATION_PREPROCESSOR_FILE: str = "vectorizer.pkl"

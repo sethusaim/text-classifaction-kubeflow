@@ -32,6 +32,11 @@ class DataTransformationArtifact:
             training_pipeline.DATA_TRANSFORMATION_VAL_TARGETS,
         )
 
+        self.vectorized_file_path: str = os.path.join(
+            self.data_transformation_dir,
+            training_pipeline.DATA_TRANSFORMATION_PREPROCESSOR_FILE,
+        )
+
 
 @dataclass
 class ClassifactionMetricArtifact:
@@ -39,7 +44,7 @@ class ClassifactionMetricArtifact:
 
 
 @dataclass
-class ModelInfoArtifact:
+class ModelTrainerArtifact:
     model_name: str
 
     model_score: ClassifactionMetricArtifact

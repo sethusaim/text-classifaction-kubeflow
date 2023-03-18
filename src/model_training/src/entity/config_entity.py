@@ -1,4 +1,5 @@
 import os
+from dataclasses import dataclass
 
 from src.constant import training_pipeline
 
@@ -31,3 +32,14 @@ class ModelTrainerConfig:
         self.model_trainer_best_model_info_path: str = os.path.join(
             self.model_training_dir, training_pipeline.MODEL_TRAINER_BEST_MODEL_INFO
         )
+
+
+@dataclass
+class MLFlowModelInfo:
+    model_name: str
+
+    model_current_stage: str
+
+    model_uri: str
+
+    model_version: str
