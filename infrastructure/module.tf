@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+module "eks_cluster" {
+  source = "./eks_cluster"
+}
+
 module "artifacts_bucket" {
   source = "./s3_buckets/artifacts_bucket"
 }
