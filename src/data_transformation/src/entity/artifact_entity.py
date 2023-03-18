@@ -1,4 +1,5 @@
 import os
+from dataclasses import dataclass
 
 from src.constant import training_pipeline
 
@@ -19,3 +20,20 @@ class DataValidationArtifact:
         self.valid_test_file_path: str = os.path.join(
             self.data_validation_dir, training_pipeline.DATA_VALIDATION_TEST_FILE_NAME
         )
+
+
+@dataclass
+class DataTransformationArtifact:
+    transformed_train_features_file_path: str
+
+    transformed_val_features_file_path: str
+
+    transformed_test_features_file_path: str
+
+    transformed_vectorizer_file_path: str
+
+    transformed_train_targets_file_path: str
+
+    transformed_val_targets_file_path: str
+
+    transformed_test_targets_file_path: str

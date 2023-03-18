@@ -41,7 +41,7 @@ TRANSFORMED_FEATURES_TRAIN_FILE: str = "transformed_train_features"
 
 TRANSFORMED_FEATURES_VAL_FILE: str = "transformed_val_features"
 
-TRANSFORMED_FEATURES_TEST_FILE: str = "transformed_test_features"
+TRANSFORMED_FEATURES_TEST_FILE: str = "transformed_test_features.pkl"
 
 TRANSFORMED_TARGETS_TRAIN_FILE: str = "transformed_train_targets.pkl"
 
@@ -49,6 +49,7 @@ TRANSFORMED_TARGETS_VAL_FILE: str = "transformed_val_targets.pkl"
 
 TRANSFORMED_TARGETS_TEST_FILE: str = "transformed_test_targets.pkl"
 
+TRANSFORMED_VECTORIZED_FILE_PATH: str = "vectorizer.pkl"
 
 DATA_TRANSFORMATION_STOP_WORDS: list = [
     "among",

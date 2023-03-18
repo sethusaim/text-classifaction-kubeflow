@@ -75,3 +75,8 @@ class DataTransformationConfig:
             self.data_transformation_dir,
             training_pipeline.TRANSFORMED_TARGETS_TEST_FILE,
         )
+
+        self.transformed_vectorizer_file_path: str = os.path.join(
+            self.data_transformation_dir,
+            training_pipeline.TRANSFORMED_VECTORIZED_FILE_PATH,
+        )
