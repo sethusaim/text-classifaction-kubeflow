@@ -8,6 +8,8 @@ MODEL_TRAINING_DIR: str = "model_training"
 
 MODEL_TRAINER_EXCEPTED_SCORE: float = 0.6
 
+MODEL_TRAINER_TRAINED_MODEL_DIR: str = "trained_model"
+
 MODEL_TRAINER_MODEL_METRIC_KEY: str = "roc_auc_score"
 
 MODEL_TRAINER_CONFIG_FILE_PATH: str = "config/model.yaml"

@@ -19,14 +19,14 @@ class ModelTrainerConfig:
             training_pipeline.MODEL_TRAINING_DIR,
         )
 
-        self.expected_accuracy: float = training_pipeline.MODEL_TRAINER_EXCEPTED_SCORE
+        self.expected_score: float = training_pipeline.MODEL_TRAINER_EXCEPTED_SCORE
 
         self.model_trainer_config_file_path: str = (
             training_pipeline.MODEL_TRAINER_CONFIG_FILE_PATH
         )
 
-        self.model_trainer_model_file_path: str = os.path.join(
-            self.model_training_dir, training_pipeline.MODEL_TRAINER_MODEL_FILE_PATH
+        self.trained_model_file_dir: str = os.path.join(
+            self.model_training_dir, training_pipeline.MODEL_TRAINER_TRAINED_MODEL_DIR
         )
 
         self.model_trainer_best_model_info_path: str = os.path.join(
