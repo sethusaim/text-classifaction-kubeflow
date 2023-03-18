@@ -1,7 +1,8 @@
-awscli==1.27.85
+awscli==1.27.89
 boto3==1.26.73
 nltk==3.8.1
 pandas==1.5.3
 pip-chill==1.0.1
 scikit-learn==1.2.1
 wincertstore==0.2
+spacy==3.5.1
