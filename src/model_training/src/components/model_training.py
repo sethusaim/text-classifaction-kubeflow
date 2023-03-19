@@ -7,7 +7,7 @@ from neuro_mf import BestModel, ModelFactory
 
 from src.constant import training_pipeline
 from src.entity.artifact_entity import (
-    ClassifactionMetricArtifact,
+    ClassificationMetricArtifact,
     DataTransformationArtifact,
     ModelTrainerArtifact,
 )
@@ -87,7 +87,7 @@ class ModelTrainer:
                     + model.model_serial_number
                 ):
 
-                    model_score: ClassifactionMetricArtifact = calculate_metric(
+                    model_score: ClassificationMetricArtifact = calculate_metric(
                         model=model.best_model, x=X_val_features, y=y_val_targets
                     )
 

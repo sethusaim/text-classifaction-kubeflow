@@ -5,7 +5,7 @@ import mlflow
 
 from src.configuration.mlflow_connection import MLFlowClient
 from src.constant import training_pipeline
-from src.entity.artifact_entity import ClassifactionMetricArtifact
+from src.entity.artifact_entity import ClassificationMetricArtifact
 from src.entity.config_entity import MLFlowModelInfo
 from src.exception import CustomException
 from src.logger import logging
