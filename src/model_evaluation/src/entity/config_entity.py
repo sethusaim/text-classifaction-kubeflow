@@ -1,7 +1,8 @@
 import os
+from dataclasses import dataclass
+from typing import Dict
 
 from src.constant import training_pipeline
-from dataclasses import dataclass
 
 
 class TrainingPipelineConfig:
@@ -13,36 +14,44 @@ class TrainingPipelineConfig:
 
 class ModelEvaluationConfig:
     def __init__(self, timestamp):
+        self.min_absolute_change: float = (
+            training_pipeline.MODEL_EVALUATION_CHANGED_THRESHOLD_SCORE
+        )
+
+        self.model_eval_threshold: float = training_pipeline.MODEL_EVALUATION_THRESHOLD
+
+        self.higher_is_better: bool = True
+
+        self.model_type: str = training_pipeline.MODEL_EVALUATION_MODEL_TYPE
+
         self.model_evaluation_dir: str = os.path.join(
             training_pipeline.ARTIFACT_DIR,
             timestamp,
             training_pipeline.MODEL_EVALUATION_DIR,
         )
 
-        self.model_evaluation_s3_model_bucket: str = (
-            training_pipeline.MODEL_EVALUATION_S3_MODEL_BUCKET
-        )
-
-        self.model_evaluation_s3_model_path: str = (
-            training_pipeline.MODEL_EVALUATION_S3_MODEL_PATH
-        )
-
         self.model_evaluation_info: str = os.path.join(
-            self.model_evaluation_dir,
-            training_pipeline.MODEL_EVALUATION_INFO,
+            self.model_evaluation_dir, training_pipeline.MODEL_EVALUATION_RESULT
         )
 
 
 @dataclass
+class MLFlowModelInfo:
+    model_name: str
+
+    model_current_stage: str
+
+    model_uri: str
+
+    model_version: str
+
+
+@dataclass
 class EvaluationModelResponse:
-    trained_model_score: float
-
-    trained_model_path: str
-
-    best_model_score: float
-
-    best_model_path: str
-
     is_model_accepted: bool
 
-    changed_score: float
+    trained_model_info: Dict
+
+    accepted_model_info: Dict
+
+    prod_model_info: Dict

@@ -2,6 +2,7 @@ import os
 from dataclasses import dataclass
 
 from src.constant import training_pipeline
+from src.entity.config_entity import MLFlowModelInfo
 
 
 class ModelTrainerArtifact:
@@ -12,12 +13,8 @@ class ModelTrainerArtifact:
             training_pipeline.MODEL_TRAINING_DIR,
         )
 
-        self.model_training_best_model_info: str = os.path.join(
-            self.model_training_dir, training_pipeline.MODEL_TRAINING_BEST_MODEL_INFO
-        )
-
-        self.model_training_best_model_path: str = os.path.join(
-            self.model_training_dir, training_pipeline.MODEL_TRAINING_BEST_MODEL
+        self.model_training_best_model_dir: str = os.path.join(
+            self.model_training_dir, training_pipeline.MODEL_TRAINING_BEST_MODEL_DIR
         )
 
 
@@ -42,7 +39,7 @@ class DataTransformationArtifact:
 
 
 @dataclass
-class ClassifactionMetricArtifact:
+class ClassificationMetricArtifact:
     accuracy_score: float
 
 
@@ -50,6 +47,8 @@ class ClassifactionMetricArtifact:
 class ModelEvaluationArtifact:
     is_model_accepted: bool
 
-    best_model_path: str
+    trained_model_info: MLFlowModelInfo
 
-    trained_model_path: str
+    accepted_model_info: MLFlowModelInfo
+
+    prod_model_info: MLFlowModelInfo

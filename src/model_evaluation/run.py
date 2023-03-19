@@ -1,9 +1,9 @@
 import sys
 
-from src.exception import CustomException
 from src.cloud_storage.aws_storage import S3Operation
-from src.entity.config_entity import TrainingPipelineConfig
 from src.components.model_evaluation import ModelEvaluation
+from src.entity.config_entity import TrainingPipelineConfig
+from src.exception import CustomException
 
 s3 = S3Operation()
 
