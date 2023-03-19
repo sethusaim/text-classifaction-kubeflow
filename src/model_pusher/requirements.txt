@@ -1,5 +1,6 @@
 awscli==1.27.85
 boto3==1.26.79
-certifi==2022.12.7
+dill==0.3.6
+mlflow==2.2.2
 pip-chill==1.0.1
 wincertstore==0.2

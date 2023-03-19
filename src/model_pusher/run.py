@@ -14,7 +14,7 @@ def start_model_pusher():
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifacts_bucket_name,
-            folders=["model_training", "model_evaluation"],
+            folders=["model_evaluation"],
         )
 
         model_pusher = ModelPusher(timestamp=timestamp)

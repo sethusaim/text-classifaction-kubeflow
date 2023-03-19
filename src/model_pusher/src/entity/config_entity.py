@@ -10,10 +10,12 @@ class TrainingPipelineConfig:
 
 class ModelPusherConfig:
     def __init__(self):
-        self.model_pusher_bucket_name: str = (
-            training_pipeline.MODEL_PUSHER_CONFIG_BUCKET
+        self.production_model_stage: str = (
+            training_pipeline.MODEL_PUSHER_PROD_MODEL_STAGE
         )
 
-        self.model_pusher_bucket_file_name: str = (
-            training_pipeline.MODEL_PUSHER_BUCKET_MODEL_PATH
+        self.staging_model_stage: str = training_pipeline.MODEL_PUSHER_STAG_MODEL_STAGE
+
+        self.archive_existing_versions: bool = (
+            training_pipeline.MODEL_PUSHER_ARCHIVE_EXISTING_VERSIONS
         )
