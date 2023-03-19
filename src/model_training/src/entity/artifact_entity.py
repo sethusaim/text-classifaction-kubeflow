@@ -1,6 +1,8 @@
 import os
-from src.constant import training_pipeline
 from dataclasses import dataclass
+from typing import List
+
+from src.constant import training_pipeline
 
 
 class DataTransformationArtifact:
@@ -45,8 +47,10 @@ class ClassifactionMetricArtifact:
 
 @dataclass
 class ModelTrainerArtifact:
-    model_name: str
+    trained_model_list: List
 
-    model_score: ClassifactionMetricArtifact
+    trained_model_dir: str
 
-    model_parameters: dict
+    best_model_dir: str
+
+    best_model_name: str

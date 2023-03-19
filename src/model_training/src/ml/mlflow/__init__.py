@@ -24,7 +24,7 @@ class MLFLowOperation:
         self,
         model: CustomModel,
         model_parameters: Dict,
-        model_score: ClassifactionMetricArtifact,
+        model_score: float,
     ) -> None:
         logging.info("Entered log_all_for_model method of MLFLowOperation class")
 

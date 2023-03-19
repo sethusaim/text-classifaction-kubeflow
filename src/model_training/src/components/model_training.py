@@ -57,13 +57,13 @@ class ModelTrainer:
             )
 
             model_factory = ModelFactory(
-                model_config_path=self.model_trainer_config.model_trainer_config_file_path
+                model_config_path=self.model_trainer_config.model_config_file_path
             )
 
             best_model_detail = model_factory.get_best_model(
                 X=X_train_features,
                 y=y_train_targets,
-                base_accuracy=self.model_trainer_config.expected_accuracy,
+                base_accuracy=self.model_trainer_config.expected_score,
             )
 
             if best_model_detail.best_score < self.model_trainer_config.expected_score:
@@ -96,14 +96,12 @@ class ModelTrainer:
                         + ".pkl",
                     )
 
-                    trained_model_path = os.path.join(self.model_trainer_config)
-
                     save_object(file_path=trained_model_path, obj=trained_model)
 
                     self.mlflow_op.log_all_for_model(
                         model=trained_model,
                         model_parameters=model_parameters,
-                        model_score=model_score,
+                        model_score=model_score.accuracy_score,
                     )
 
             mlflow.end_run()
@@ -114,12 +112,12 @@ class ModelTrainer:
                 raise Exception("No best model found with score more than base score")
 
             model_trainer_artifact: ModelTrainerArtifact = ModelTrainerArtifact(
+                trained_model_list=model_factory.grid_searched_best_model_list,
                 trained_model_dir=self.model_trainer_config.trained_model_file_dir,
-                best_model_dir=self.model_trainer_config.trained_model_file_dir,
+                best_model_dir=self.model_trainer_config.best_model_file_dir,
                 best_model_name=best_model_detail.best_model.__class__.__name__
                 + "-"
                 + training_pipeline.EXP_NAME,
-                trained_model_list=model_factory.grid_searched_best_model_list,
             )
 
             logging.info(f"Model trainer artifact: {model_trainer_artifact}")
