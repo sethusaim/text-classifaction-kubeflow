@@ -6,6 +6,10 @@ terraform {
   }
 }
 
+module "k8s_master_instance" {
+  source = "./ec2_instance/k8s_master_instance"
+}
+
 module "mlflow_instance" {
   source = "./ec2_instance/mlflow_instance"
 }
