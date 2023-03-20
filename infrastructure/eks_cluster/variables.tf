@@ -8,6 +8,11 @@ variable "cluster-name" {
   type    = string
 }
 
+variable "k8s_version" {
+  default = "1.23"
+  type    = string
+}
+
 variable "clutser_instance_type" {
   default = "t2.large"
   type    = string
@@ -54,12 +59,12 @@ variable "eks_node_group_name" {
 }
 
 variable "desired_node_size" {
-  default = 3
+  default = 2
   type    = number
 }
 
 variable "min_node_size" {
-  default = 3
+  default = 2
   type    = number
 }
 

@@ -1,11 +1,14 @@
 terraform {
   backend "s3" {
-    bucket = "tf-state-sethu"
+    bucket = "ineuron-tf-state"
     key    = "tf_state"
     region = "us-east-1"
   }
 }
 
+module "mlflow_instance" {
+  source = "./ec2_instance/mlflow_instance"
+}
 module "eks_cluster" {
   source = "./eks_cluster"
 }
