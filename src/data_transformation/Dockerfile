@@ -4,6 +4,6 @@ WORKDIR /app
 
 COPY . /app
 
-RUN pip3 install --upgrade pip && pip3 install -r requirements.txt && python3 -m nltk.downloader all && python3 -m spacy download en
+RUN pip3 install --upgrade pip && pip3 install -r requirements.txt && python3 -m nltk.downloader all && python3 -m spacy download en && rm -rf /root/.cache/pip
 
 CMD ["python3", "run.py"]
