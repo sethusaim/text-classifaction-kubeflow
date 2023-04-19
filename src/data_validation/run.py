@@ -11,6 +11,10 @@ tp = TrainingPipelineConfig()
 
 
 def start_data_validation():
+    """
+    This function initiates data validation using a timestamp obtained from an S3 bucket and catches any
+    exceptions that may occur.
+    """
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifact_bucket_name, folders=["data_ingestion"]

@@ -33,6 +33,13 @@ class ModelTrainer:
         self.mlflow_op = MLFLowOperation()
 
     def initiate_model_training(self):
+        """
+        This function loads data and trains a machine learning model using a ModelFactory, saves the best
+        model and trained models, logs metrics using MLflow, and returns a ModelTrainerArtifact.
+
+        Returns:
+          The method is returning a ModelTrainerArtifact object.
+        """
         logging.info("Entered initiate_model_training method of ModelTrainer class")
 
         try:

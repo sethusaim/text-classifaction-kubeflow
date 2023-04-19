@@ -11,6 +11,9 @@ tp = TrainingPipelineConfig()
 
 
 def start_model_evaluation():
+    """
+    This function initiates model evaluation using timestamp and syncs the artifacts folder to S3.
+    """
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifact_bucket_name,

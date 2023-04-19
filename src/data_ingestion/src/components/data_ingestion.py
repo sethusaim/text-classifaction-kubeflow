@@ -19,10 +19,10 @@ class DataIngestion:
 
     def export_data_into_feature_store(self) -> pd.DataFrame:
         """
-        It takes the data from the MongoDB database and exports it into the feature store
+        This function exports data from MongoDB to a feature store and saves it as a CSV file.
 
         Returns:
-          A dataframe
+          The method is returning a pandas DataFrame object.
         """
         logging.info(
             "Entered export_data_into_feature_store method of DataIngestion class"
@@ -37,13 +37,13 @@ class DataIngestion:
                 collection_name=self.data_ingestion_config.collection_name
             )
 
+            dataframe.to_csv(self.data_ingestion_config.feature_store_file_path)
+
             logging.info("Exported data from mongodb to feature store")
 
             logging.info(
                 "Exited export_data_into_feature_store method of DataIngestion class"
             )
-
-            dataframe.to_csv(self.data_ingestion_config.feature_store_file_path)
 
             return dataframe
 
@@ -52,8 +52,14 @@ class DataIngestion:
 
     def split_data_as_train_test(self, dataframe: pd.DataFrame) -> None:
         """
-        Feature store dataset will be split into train and test file
+        This function splits a given dataframe into training and testing sets, saves them as CSV files, and
+        logs the process.
+
+        Args:
+          dataframe (pd.DataFrame): A pandas DataFrame containing the data to be split into training and
+        testing sets.
         """
+        logging.info("Entered split_data_as_train_test method of Data_Ingestion class")
 
         try:
             train_set, test_set = train_test_split(
@@ -61,10 +67,6 @@ class DataIngestion:
             )
 
             logging.info("Performed train test split on the dataframe")
-
-            logging.info(
-                "Exited split_data_as_train_test method of Data_Ingestion class"
-            )
 
             dir_path: str = os.path.dirname(
                 self.data_ingestion_config.training_file_path
@@ -84,15 +86,20 @@ class DataIngestion:
 
             logging.info(f"Exported train and test file path.")
 
+            logging.info(
+                "Exited split_data_as_train_test method of Data_Ingestion class"
+            )
+
         except Exception as e:
             raise CustomException(e, sys)
 
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
         """
-        It takes a dataframe, converts it to a csv file and returns the path of the csv file
+        This function initiates data ingestion by exporting data into a feature store, splitting the data
+        into train and test sets, and returning a DataIngestionArtifact object.
 
         Returns:
-          DataIngestionArtifact
+          The method `initiate_data_ingestion` returns an instance of the `DataIngestionArtifact` class.
         """
         logging.info("Entered initiate_data_ingestion method of DataIngestion class")
 

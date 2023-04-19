@@ -28,13 +28,16 @@ class DataValidation:
 
     def validate_number_of_columns(self, dataframe: pd.DataFrame) -> bool:
         """
-        It checks if the number of columns in the dataframe matches the number of columns in the schema
+        This function validates if the number of columns in a given dataframe matches the required number of
+        columns specified in the schema configuration.
 
         Args:
-          dataframe (pd.DataFrame): The dataframe to be validated
+          dataframe (pd.DataFrame): A pandas DataFrame that needs to be validated for the number of columns
+        it has.
 
         Returns:
-          A boolean value
+          a boolean value. It returns True if the number of columns in the input dataframe matches the
+        number of columns specified in the schema configuration, and False otherwise.
         """
         try:
             number_of_columns = len(self._schema_config["columns"])
@@ -52,8 +55,14 @@ class DataValidation:
             raise CustomException(e, sys)
 
     def initiate_data_validation(self) -> DataValidationArtifact:
-        try:
+        """
+        This function initiates data validation by checking if the train and test dataframes contain all
+        columns and saves the valid dataframes to specified directories.
 
+        Returns:
+          a DataValidationArtifact object.
+        """
+        try:
             os.makedirs(self.data_validation_config.valid_data_dir, exist_ok=True)
 
             os.makedirs(self.data_validation_config.invalid_data_dir, exist_ok=True)

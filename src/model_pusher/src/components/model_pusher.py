@@ -18,6 +18,10 @@ class ModelPusher:
         self.mlflow_client = MLFlowClient().client
 
     def initiate_model_pusher(self):
+        """
+        This function initiates the process of pushing a trained model to production or staging based on its
+        evaluation results.
+        """
         logging.info("Entered initiate_model_pusher method of ModelPusher class")
 
         try:

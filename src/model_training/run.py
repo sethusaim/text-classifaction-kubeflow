@@ -11,6 +11,9 @@ tp = TrainingPipelineConfig()
 
 
 def start_model_training():
+    """
+    This function initiates model training and syncs the artifacts folder to an S3 bucket.
+    """
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifact_bucket_name, folders=["data_transformation"]

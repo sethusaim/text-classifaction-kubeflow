@@ -17,6 +17,15 @@ class S3Operation:
     def sync_folder_to_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
+        """
+        The function syncs a local folder to an S3 bucket using the AWS CLI.
+
+        Args:
+          folder (str): The local folder path that needs to be synced to S3 bucket.
+          bucket_name (str): The name of the S3 bucket where the folder will be synced to.
+          bucket_folder_name (str): The name of the folder in the S3 bucket where the contents of the local
+        folder will be synced to.
+        """
         logging.info("Entered sync_folder_to_s3 method of S3Operation class")
 
         try:
@@ -30,6 +39,15 @@ class S3Operation:
     def sync_folder_from_s3(
         self, folder: str, bucket_name: str, bucket_folder_name: str
     ) -> None:
+        """
+        This Python function syncs a local folder with a folder in an S3 bucket using the AWS CLI.
+
+        Args:
+          folder (str): The local folder path where the files from S3 bucket will be synced to.
+          bucket_name (str): The name of the S3 bucket from which the folder needs to be synced.
+          bucket_folder_name (str): The name of the folder within the S3 bucket that needs to be synced with
+        the local folder.
+        """
         logging.info("Entered sync_folder_from_s3 method of S3Operation class")
 
         try:
@@ -41,6 +59,19 @@ class S3Operation:
             raise CustomException(e, sys)
 
     def get_pipeline_artifacts(self, bucket_name: str, folders: List) -> str:
+        """
+        This function retrieves the latest artifacts from an S3 bucket and syncs them to a local folder.
+
+        Args:
+          bucket_name (str): The name of the S3 bucket where the artifacts are stored.
+          folders (List): A list of folder names for which the artifacts need to be retrieved from the S3
+        bucket.
+
+        Returns:
+          The method is returning the name of the top-level directory of the latest artifacts folder in the
+        specified S3 bucket, after syncing the specified subfolders within that artifacts folder to the
+        local file system.
+        """
         logging.info("Entered get_pipeline_artifacts method of S3Operation class")
 
         try:
@@ -71,6 +102,14 @@ class S3Operation:
             raise CustomException(e, sys)
 
     def upload_file(self, file_name, bucket_name, bucket_file_name) -> None:
+        """
+        This function uploads a file to an S3 bucket using the AWS SDK for Python (Boto3).
+
+        Args:
+          file_name: The local file path and name of the file that needs to be uploaded to S3.
+          bucket_name: The name of the S3 bucket where the file will be uploaded to.
+          bucket_file_name: The name of the file that will be used in the S3 bucket.
+        """
         logging.info("Entered upload_file method of S3Operation class")
 
         try:

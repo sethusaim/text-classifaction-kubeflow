@@ -11,6 +11,10 @@ tp = TrainingPipelineConfig()
 
 
 def start_data_transformation():
+    """
+    This function initiates a data transformation process using a timestamp obtained from an S3 bucket
+    and syncs the resulting artifacts back to the bucket.
+    """
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifact_bucket_name, folders=["data_validation"]

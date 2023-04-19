@@ -8,6 +8,9 @@ from src.exception import CustomException
 
 
 def start_data_ingestion() -> DataIngestionArtifact:
+    """
+    This function initiates data ingestion, handles exceptions, and syncs a folder to an S3 bucket.
+    """
     try:
         data_ingestion: DataIngestion = DataIngestion()
 

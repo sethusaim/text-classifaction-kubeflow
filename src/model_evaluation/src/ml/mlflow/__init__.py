@@ -20,6 +20,16 @@ class MLFLowOperation:
         mlflow.set_experiment(experiment_name=training_pipeline.EXP_NAME)
 
     def get_model_info(self, best_model_path: str) -> MLFlowModelInfo:
+        """
+        This function retrieves information about a trained MLFlow model from a specified path.
+
+        Args:
+          best_model_path (str): A string representing the path to the directory containing the best
+        trained model.
+
+        Returns:
+          an instance of the MLFlowModelInfo class.
+        """
         logging.info("Entered get_model_info method of MLFLowOperation class")
 
         try:
@@ -58,6 +68,13 @@ class MLFLowOperation:
             raise CustomException(e, sys)
 
     def get_prod_model_info(self) -> Union[MLFlowModelInfo, None]:
+        """
+        This function retrieves information about the latest production model from a list of registered
+        models using the MLFlow API.
+
+        Returns:
+          an instance of the MLFlowModelInfo class or None.
+        """
         logging.info("Entered get_prod_model_info method of MLFLowOperation class")
 
         try:

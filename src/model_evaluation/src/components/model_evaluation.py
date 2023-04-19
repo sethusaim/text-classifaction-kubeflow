@@ -40,6 +40,13 @@ class ModelEvaluation:
         self.mlflow_op: MLFLowOperation = MLFLowOperation()
 
     def evaluate_model(self) -> EvaluationModelResponse:
+        """
+        This function evaluates a trained machine learning model by comparing it to a production model and
+        returns an evaluation result.
+
+        Returns:
+          The method is returning an instance of the `EvaluationModelResponse` class.
+        """
         logging.info("Entered evaluate_model method of ModelEvaluation class")
 
         try:
@@ -135,6 +142,14 @@ class ModelEvaluation:
             raise CustomException(e, sys)
 
     def initiate_model_evaluation(self) -> ModelEvaluationArtifact:
+        """
+        This function initiates the evaluation of a machine learning model and saves the evaluation results
+        as a JSON file.
+
+        Returns:
+          The method `initiate_model_evaluation` is returning an instance of the `ModelEvaluationArtifact`
+        class.
+        """
         logging.info(
             "Entered initiate_model_evaluation method of ModelEvaluation class"
         )

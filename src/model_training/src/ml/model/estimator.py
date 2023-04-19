@@ -14,6 +14,21 @@ class CustomModel(PythonModel):
         self.model = model
 
     def predict(self, context, dataframe: DataFrame) -> DataFrame:
+        """
+        This function takes in a context and a DataFrame, applies a preprocessor to the DataFrame, uses a
+        model to make predictions, and returns the predictions.
+
+        Args:
+          context: The context parameter is a dictionary containing any additional information or context
+        that may be needed for the prediction. This could include things like configuration settings, model
+        hyperparameters, or other relevant information.
+          dataframe (DataFrame): A pandas DataFrame containing the input data to be used for making
+        predictions.
+
+        Returns:
+          The code is returning the predictions made by the model on the input data after transforming it
+        using the preprocessor. The output is a DataFrame containing the predicted values.
+        """
         try:
             transformed_feature = self.preprocessor.transform(dataframe)
 

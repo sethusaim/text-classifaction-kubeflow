@@ -1,4 +1,6 @@
-LABEL_DICT: dict = {
+from typing import Dict, List
+
+LABEL_DICT: Dict = {
     "Electronics": 0,
     "Household": 1,
     "Books": 2,
@@ -27,7 +29,7 @@ DATA_TRANSFORMED_TRANSFORMED_DIR: str = "transformed"
 
 DATA_TRANSFORMATION_TEST_FILE_NAME: str = "ecom_transformed_test.csv"
 
-SPLIT_KWARGS: dict = {"test_size": 0.3, "random_state": 42}
+SPLIT_KWARGS: Dict = {"test_size": 0.3, "random_state": 42}
 
 DATA_TRANSFORMATION_CONFIG_FOLDER: str = "config"
 
@@ -51,7 +53,7 @@ TRANSFORMED_TARGETS_TEST_FILE: str = "transformed_test_targets.pkl"
 
 TRANSFORMED_VECTORIZED_FILE_PATH: str = "vectorizer.pkl"
 
-DATA_TRANSFORMATION_STOP_WORDS: list = [
+DATA_TRANSFORMATION_STOP_WORDS: List = [
     "among",
     "onto",
     "shall",
@@ -63,7 +65,7 @@ DATA_TRANSFORMATION_STOP_WORDS: list = [
     "would",
 ]
 
-DATA_TRANSFORMATION_KEEP_TAGS = [
+DATA_TRANSFORMATION_KEEP_TAGS: List = [
     "NN",
     "NNS",
     "NNP",
@@ -86,7 +88,7 @@ DATA_TRANSFORMATION_KEEP_TAGS = [
     "WRB",
 ]
 
-ALPHABETS = [
+ALPHABETS: List = [
     "a",
     "b",
     "c",
@@ -116,7 +118,7 @@ ALPHABETS = [
 ]
 
 
-PREPOSITIONS = [
+PREPOSITIONS: List = [
     "about",
     "above",
     "across",
@@ -152,7 +154,7 @@ PREPOSITIONS = [
     "with",
 ]
 
-PREPOSITIONS_LESS_COMMON = [
+PREPOSITIONS_LESS_COMMON: List = [
     "aboard",
     "along",
     "amid",
@@ -186,9 +188,9 @@ PREPOSITIONS_LESS_COMMON = [
     "without",
 ]
 
-COORDINATING_CONJUNCTIONS = ["and", "but", "for", "nor", "or", "so", "and", "yet"]
+COORDINATING_CONJUNCTIONS: List = ["and", "but", "for", "nor", "or", "so", "and", "yet"]
 
-CORRELATIVE_CONJUNCTIONS = [
+CORRELATIVE_CONJUNCTIONS: List = [
     "both",
     "and",
     "either",
@@ -202,7 +204,7 @@ CORRELATIVE_CONJUNCTIONS = [
     "or",
 ]
 
-SUBORDINATING_CONJUNCTIONS = [
+SUBORDINATING_CONJUNCTIONS: List = [
     "after",
     "although",
     "as",
@@ -244,7 +246,7 @@ SUBORDINATING_CONJUNCTIONS = [
     "while",
 ]
 
-OTHERS = [
+OTHERS: List = [
     "ã",
     "å",
     "ì",

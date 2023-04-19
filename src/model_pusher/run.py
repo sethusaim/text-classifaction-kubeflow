@@ -11,6 +11,9 @@ tp = TrainingPipelineConfig()
 
 
 def start_model_pusher():
+    """
+    This function initiates a model pusher with a timestamp retrieved from an S3 bucket.
+    """
     try:
         timestamp = s3.get_pipeline_artifacts(
             bucket_name=tp.artifacts_bucket_name,

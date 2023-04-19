@@ -20,15 +20,19 @@ class EcomData:
         self, collection_name: str, database_name: Optional[str] = None
     ) -> pd.DataFrame:
         """
-        > This function takes in a collection name and database name (optional) and returns a pandas
-        dataframe of the collection
+        This function exports a MongoDB collection as a pandas DataFrame.
 
         Args:
-          collection_name (str): The name of the collection you want to export.
-          database_name (Optional[str]): The name of the database you want to connect to.
+          collection_name (str): The name of the MongoDB collection to export as a Pandas DataFrame.
+          database_name (Optional[str]): Optional parameter that specifies the name of the database where
+        the collection is located. If not provided, the method assumes that the collection is located in the
+        default database of the MongoDB client.
 
         Returns:
-          A dataframe
+          a pandas DataFrame containing the data from a MongoDB collection specified by the input parameters
+        `collection_name` and `database_name` (optional). If the collection contains an `_id` field, it will
+        be dropped from the DataFrame before returning it. If an exception occurs during the execution of
+        the function, a custom exception will be raised with the error message and the `sys` module.
         """
         try:
             if database_name is None:

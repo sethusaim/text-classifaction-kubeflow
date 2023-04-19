@@ -34,6 +34,16 @@ class DataTransformation:
         self.s3 = S3Operation()
 
     def drop_duplicate_and_null_records(self, data_frame: pd.DataFrame) -> pd.DataFrame:
+        """
+        This function drops duplicate and null records from a given pandas DataFrame.
+
+        Args:
+          data_frame (pd.DataFrame): A pandas DataFrame that contains the data to be processed and cleaned.
+
+        Returns:
+          The method is returning a pandas DataFrame after dropping duplicate records and null values from
+        the input pandas DataFrame.
+        """
         logging.info(
             "Entered drop_duplicate_records method of DataTransformation class"
         )
@@ -57,6 +67,16 @@ class DataTransformation:
             raise CustomException(e, sys)
 
     def encode_target_cols(self, dataframe: pd.DataFrame) -> pd.DataFrame:
+        """
+        This function encodes the target column of a pandas DataFrame using a predefined label dictionary.
+
+        Args:
+          dataframe (pd.DataFrame): A pandas DataFrame that contains the data to be transformed.
+
+        Returns:
+          The method is returning a pandas DataFrame after encoding the target columns using a label
+        dictionary.
+        """
         logging.info("Entered encode_target_cols method of DataTransformation class")
 
         try:
@@ -74,6 +94,18 @@ class DataTransformation:
     def split_data(
         self, data_frame: pd.DataFrame
     ) -> Tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+        """
+        This function splits a given pandas DataFrame into training, validation, and testing sets and
+        returns them as separate DataFrames.
+
+        Args:
+          data_frame (pd.DataFrame): A pandas DataFrame containing the data to be split into training,
+        validation, and testing sets.
+
+        Returns:
+          The method `split_data` returns a tuple of three dataframes: `data_train`, `df_val`, and
+        `df_test`.
+        """
         logging.info("Entered split_data method of DataTransformation class")
 
         try:
@@ -114,6 +146,11 @@ class DataTransformation:
             raise CustomException(e, sys)
 
     def initiate_data_transformation(self):
+        """
+        This function performs data transformation on a given dataset, including dropping duplicates and
+        null records, encoding target columns, normalizing text data, transforming data using
+        TfidfVectorizer, and saving the transformed data and artifacts.
+        """
         logging.info(
             "Entered initiate_data_transformation method of DataTransformation class"
         )

@@ -5,7 +5,6 @@ import mlflow
 
 from src.configuration.mlflow_connection import MLFlowClient
 from src.constant import training_pipeline
-from src.entity.artifact_entity import ClassificationMetricArtifact
 from src.entity.config_entity import MLFlowModelInfo
 from src.exception import CustomException
 from src.logger import logging
@@ -26,6 +25,14 @@ class MLFLowOperation:
         model_parameters: Dict,
         model_score: float,
     ) -> None:
+        """
+        The function logs model parameters, the model itself, and a model score using MLflow.
+
+        Args:
+          model (CustomModel): A CustomModel object that contains the trained machine learning model.
+          model_parameters (Dict): A dictionary containing the parameters used to train the model.
+          model_score (float): The evaluation score of the trained model.
+        """
         logging.info("Entered log_all_for_model method of MLFLowOperation class")
 
         try:
@@ -60,6 +67,17 @@ class MLFLowOperation:
             raise CustomException(e, sys)
 
     def get_model_info(self, best_model_name: str) -> MLFlowModelInfo:
+        """
+        This function retrieves information about a trained MLFlow model with a given name.
+
+        Args:
+          best_model_name (str): A string representing the name of the best model to retrieve information
+        for.
+
+        Returns:
+          an instance of the MLFlowModelInfo class, which contains information about a trained ML model such
+        as its name, current stage, URI, and version.
+        """
         logging.info("Entered get_model_info method of MLFLowOperation class")
 
         try:
@@ -96,6 +114,13 @@ class MLFLowOperation:
             raise CustomException(e, sys)
 
     def get_prod_model_info(self) -> Union[MLFlowModelInfo, None]:
+        """
+        This function retrieves information about the latest production model from a list of registered
+        models using the MLFlow API.
+
+        Returns:
+          an instance of the MLFlowModelInfo class or None.
+        """
         logging.info("Entered get_prod_model_info method of MLFLowOperation class")
 
         try:

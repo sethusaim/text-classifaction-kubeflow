@@ -11,6 +11,17 @@ s3 = S3Operation()
 
 
 def get_s3_model(model_path: str, bucket_name: str) -> Union[str, None]:
+    """
+    This function checks if a model is present in an S3 bucket and downloads it if it is.
+
+    Args:
+      model_path (str): A string representing the path to the model file.
+      bucket_name (str): The name of the S3 bucket where the model is stored.
+
+    Returns:
+      either a string representing the model path or None, depending on whether the best model is
+    present in the specified S3 bucket.
+    """
     try:
         model_dir: str = os.path.dirname(model_path)
 
@@ -49,6 +60,19 @@ class CustomModel:
             raise CustomException(e, sys)
 
     def predict(self, x):
+        """
+        This function takes in an input, transforms it using a preprocessor, predicts an output using a
+        model, and returns the predicted output.
+
+        Args:
+          x: The input data that needs to be predicted by the model.
+
+        Returns:
+          The function `predict` returns the predicted values `y_hat` for the input `x` after transforming
+        it using the preprocessor and using the trained model to make the prediction. If an exception occurs
+        during the prediction process, a `CustomException` is raised with the original exception and the
+        `sys` module.
+        """
         try:
             x_transform = self.preprocessor.transform(x)
 
